@@ -11,14 +11,16 @@ byte AIRSPEED::fetchPressure(unsigned int *p_P_dat) {
   byte Press_H, Press_L, _status;
   unsigned int P_dat;
 
+  if(millis()%20 <= 10){
   Wire.beginTransmission(address);
   Wire.endTransmission();
-  delay(10);
-
+  }
+   else{
   Wire.requestFrom((int)address, (int)4);
   Press_H = Wire.read();
   Press_L = Wire.read();
   Wire.endTransmission();
+  }
 
   _status = (Press_H >> 6) & 0x03;
   Press_H = Press_H & 0x3f;
