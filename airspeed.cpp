@@ -1,6 +1,7 @@
 #include "AIRSPEED.h"
 
 AIRSPEED::AIRSPEED() {
+  Wire.begin();
   address = 0x28;
   k = 1.0;
   initial_PR = 0;
